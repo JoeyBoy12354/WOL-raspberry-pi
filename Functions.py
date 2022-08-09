@@ -123,6 +123,7 @@ def createListFromData(data,MACorIP):
 
 def run(data,returnTrue):
     if(GPIO.input(config[0]) == 0 and GPIO.input(config[1]) == 0):
+        print("Pin ",config[0]," is Low and Pin ",config[1]," is Low")
         known_devices_IP = createListFromData(data,1)
         known_devices_STATUS = ['IS DOWN']*len(known_devices_IP) #what happens if devices are up
         known_devices_MAC = createListFromData(data,2)   
@@ -139,10 +140,10 @@ def run(data,returnTrue):
             if returnTrue == True:
                 return known_devices_STATUS             
     elif(GPIO.input(config[0]) == 0 and GPIO.input(config[1]) == 1):
-        print("Pin "+config[0]+" is High and Pin "+config[1]+" is Low")
+        print("Pin ",config[0]," is Low and Pin ",config[1]," is High")
         
     elif(GPIO.input(config[0]) == 1 and GPIO.input(config[1]) == 0):
-        print("Pin "+config[0]+" is High and Pin "+config[1]+" is Low")
+        print("Pin ",config[0]," is High and Pin ",config[1]," is Low")
     else:
-        print("Both Pins are High")
+        print("Pin ",config[0]," is High and Pin ",config[1]," is High")
 
