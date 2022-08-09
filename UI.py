@@ -180,23 +180,40 @@ while True:
 
     if event == 'Set New Config':
         print('Set New Config')
-        if int(values['-TIME-'])<59:
-            window['-TIMEtxt-'].update('Time > 59 seconds')
-        elif int(values['-TIME-']) == '':
-            window['-TIMEtxt-'].update('Time empty')
-        elif int(values['-GP1-']) == '':
-            window['-TIMEtxt-'].update('PinA not set')
-        elif int(values['-GP2-']) == '':
-            window['-TIMEtxt-'].update('PinB not set')
-        else:
-            config[0] = int(values['-GP1-'])
-            config[1] = int(values['-GP2-'])
-            config[2] = int(values['-TIME-'])
-            Functions.configWrite(config[0],config[1],config[2],config[3])
+        emptyCheckTime = values['-TIME-']
+        emptyCheckGP1 = values['-GP1-']
+        emptyCheckGP2 = values['-GP2-']
 
-            Functions.newPinConfig(config[0],config[1])
-            window['-GPtxt-'].update('PinA: '+(str(config[0])+' '+'PinB: '+str(config[1])))
-            window['-TIMEtxt-'].update(str(config[2])+' seconds')
+        if emptyCheckTime != '':
+            if int(values['-TIME-']) <59:
+                window['-OUTPUT-'].update('Time > 59 seconds')
+                print('Time > 59 seconds')
+            else:
+                config[2] = int(values['-TIME-'])
+        else:
+            print('Time not set')
+
+        if emptyCheckGP1 != '':
+            if int(values['-GP1-']) == int(values['-GP2-']):
+                window['-OUTPUT-'].update('PinA cannot equal PinB')
+                print('PinA cannot equal PinB')
+            else:
+                config[0] = int(values['-GP1-'])
+        else:
+            print('PinA not set')
+        if emptyCheckGP2 != '':
+            if int(values['-GP1-']) == int(values['-GP2-']):
+                window['-OUTPUT-'].update('PinA cannot equal PinB')
+                print('PinA cannot equal PinB')
+            else:
+                config[1] = int(values['-GP2-'])
+        else:
+            print('PinB not set')
+        
+        Functions.configWrite(config[0],config[1],config[2],config[3])
+        Functions.newPinConfig(config[0],config[1])
+        window['-GPtxt-'].update('PinA: '+(str(config[0])+' '+'PinB: '+str(config[1])))
+        window['-TIMEtxt-'].update(str(config[2])+' seconds')
 
 
     if time.time() - oldtime > config[2]:
