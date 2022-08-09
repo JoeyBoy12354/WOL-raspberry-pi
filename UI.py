@@ -1,8 +1,6 @@
 from cmath import pi
 import PySimpleGUI as sg
 import os.path
-import sys
-sys.path.insert(1, '/home/pi/Desktop/Johann_code')
 import Functions 
 import time
 
@@ -163,7 +161,8 @@ while True:
                 window['-DEVICESTATUS-'].update(status[i])
             
     if event == "Delete":
-        print('Delete')
+        print('Delete Device Button Pressed')
+        print('Delete ')
         Functions.csvDelete(values['-DEVICESELECT-'][0])
         data = Functions.csvRead()
         names = []
