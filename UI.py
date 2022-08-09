@@ -204,6 +204,7 @@ while True:
         window['-LOCALIP-'].update("Local IP:"+Functions.gethostIP())
         if config[3] == False:
             print('Loops Disabled.')
+            oldtime = time.time()
         else:
             print('Loops Enabled. Set to run every ',config[2],' seconds')
             oldtime = time.time()
