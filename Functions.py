@@ -8,7 +8,7 @@ import csv
 
 
 def configWrite(pinA,pinB,loopTime,loop):
-    with open('/home/pi/Desktop/Johann_code/config.csv', 'w') as configfile:
+    with open('config.csv', 'w') as configfile:
         config = [pinA,pinB,loopTime,loop]
         configwriter = csv.writer(configfile)
         configwriter.writerow(config)
@@ -16,7 +16,7 @@ def configWrite(pinA,pinB,loopTime,loop):
 
 def configRead():
     config = [5,6,129,True]
-    with open('/home/pi/Desktop/Johann_code/config.csv') as configfile:
+    with open('config.csv') as configfile:
         configreader = csv.reader(configfile, delimiter=',')
         for row in configreader:
             if len(row)>3:
@@ -38,7 +38,8 @@ GPIO.setup(config[1], GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def csvRead():
     data = []
-    with open('/home/pi/Desktop/Johann_code/devices.csv', newline='') as devicefile:
+    #/home/pi/Desktop/Johann_code/devices.csv
+    with open('devices.csv', newline='') as devicefile:
         devicereader = csv.reader(devicefile)
         mylist = list(devicereader)
         for i in range(0,len(mylist)):
@@ -47,7 +48,7 @@ def csvRead():
     return data
 
 def csvWrite(name,ip,mac):
-    with open('/home/pi/Desktop/Johann_code/devices.csv', 'a', newline='') as devicefile:
+    with open('devices.csv', 'a', newline='') as devicefile:
         device = [name,ip,mac]
         devicewriter = csv.writer(devicefile)
         devicewriter.writerow('')
@@ -56,7 +57,7 @@ def csvWrite(name,ip,mac):
 
 def csvDelete(name):
     lines = list()
-    with open('/home/pi/Desktop/Johann_code/devices.csv', 'r') as readFile:
+    with open('devices.csv', 'r') as readFile:
         reader = csv.reader(readFile)
         for row in reader:
             lines.append(row)
