@@ -1,3 +1,32 @@
+4 September
+---------------BUGS--------------------
+Both Pins or neither must be allocated new values when setting new config.
+Otherwise crash
+File "C:\Johann\Raspberry Pi\Pi code exe\UI_NoPins.py", line 202, in <module>
+    if int(values['-GP1-']) == int(values['-GP2-']):
+ValueError: invalid literal for int() with base 10: ''
+
+When adding new devices sometimes program crashes.
+In UI.py line 144
+status.append('UNKNOWN')
+AttributeError: 'Nonetype' object has no attribute append
+
+-------------FEATURES------------------
+It is now not possible to add two devices that have the same name
+
+---------------FIXES-------------------
+Bug from both pins not being able to allocate a value to only 1 pin has been fixed.
+
+Bug where length of status array does not match length of name array has been fixed.
+
+
+
+
+
+
+
+
+
 5 August
 
 
