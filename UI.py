@@ -133,6 +133,8 @@ while True:
     if event == "Add":
         if len(values["-NAME-"])<1 :
             window['-OUTPUT-'].update('INCORRECT NAME')
+        elif values["-NAME-"] in names:
+            window['-OUTPUT-'].update('TWO DEVICES CANNOT HAVE THE SAME NAME')
         elif len(values["-IP-"])<len("0.0.0.0"):
             window['-OUTPUT-'].update('INCORRECT IP')
         elif len(values["-MAC-"])<len("00-00-00-00-00-00") :
@@ -163,12 +165,12 @@ while True:
     if event == "Delete":
         print('Delete Device Button Pressed')
         print('Delete ')
+        index = names.index(values['-DEVICESELECT-'][0])
+        status.remove(status[index])
+        names.remove(names[index])
         Functions.csvDelete(values['-DEVICESELECT-'][0])
-        data = Functions.csvRead()
-        names = []
-        for i in range(0,len(data)):
-            names.append(data[i][0])
         window['-DEVICESELECT-'].update(values = names)
+        data  = Functions.csvRead()
 
     if event == 'Force Wake All':
         print('Force Wake button pressed')
@@ -194,21 +196,18 @@ while True:
             print('Time not set')
 
         if emptyCheckGP1 != '':
-            if int(values['-GP1-']) == int(values['-GP2-']):
-                window['-OUTPUT-'].update('PinA cannot equal PinB')
-                print('PinA cannot equal PinB')
-            else:
-                config[0] = int(values['-GP1-'])
+            config[0] = int(values['-GP1-'])
         else:
             print('PinA not set')
+
         if emptyCheckGP2 != '':
-            if int(values['-GP1-']) == int(values['-GP2-']):
-                window['-OUTPUT-'].update('PinA cannot equal PinB')
-                print('PinA cannot equal PinB')
-            else:
-                config[1] = int(values['-GP2-'])
+            config[1] = int(values['-GP2-'])
         else:
             print('PinB not set')
+
+        if config[1]==config[0]:
+            window['-OUTPUT-'].update('Pins cannot have the same value')
+            print('WARNING: Pin A may not be equal to Pin B')
         
         Functions.configWrite(config[0],config[1],config[2],config[3])
         Functions.newPinConfig(config[0],config[1])
