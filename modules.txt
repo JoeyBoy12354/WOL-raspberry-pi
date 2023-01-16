@@ -1,5 +1,5 @@
 cmath
-PySimpleGUI as sg
+PySimpleGUI
 time
 wakeonlan
 os
