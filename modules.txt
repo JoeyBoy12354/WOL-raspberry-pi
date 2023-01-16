@@ -1,0 +1,6 @@
+cmath
+PySimpleGUI as sg
+time
+wakeonlan
+os
+csv
