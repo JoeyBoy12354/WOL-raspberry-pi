@@ -1,21 +1,15 @@
-import subprocess  
+import os
   
-def ping(modules):
-    
-    # The command you want to execute   
-    cmd = 'python -m pip install'
-  
-    # send one packet of data to the host 
-    # this is specified by '-c 1' in the argument list 
+def getModules(modules):
     outputlist = []
-    # Iterate over all the modules in the list and ping each module
+    # Iterate over all the modules in the list and install each module
     for module in modules:
-        temp = subprocess.Popen([cmd, '-c 1', module], stdout = subprocess.PIPE) 
+        print(" ");
+        print("Getting: ",module)
+        response = os.system('pip install ' + module)
+        print("Response: ",response)
         # get the output as a string
-        output = str(temp.communicate()) 
-    # store the output in the list
-        outputlist.append(output)
-    return outputlist
+    return
   
 if __name__ == '__main__': 
     
@@ -26,7 +20,5 @@ if __name__ == '__main__':
     # to make sure there aren't any unnecessary lines.
     for i in range(len(modules)):
         modules[i] = modules[i].strip('\n')
-    outputlist = ping(modules) 
+    getModules(modules) 
     
-    # Uncomment the following lines to print the output of successful modules
-    # print(outputlist)
