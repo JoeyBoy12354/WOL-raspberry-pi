@@ -223,7 +223,9 @@ while True:
         else:
             print('Loops Enabled. Set to run every ',config[2],' seconds')
             oldtime = time.time()
-            status = Functions.run(data,True)
+            interim_status = Functions.run(data,True)
+            if interim_status != None:
+                status = interim_status
     
     if event == 'Run/Stop Loop':
         print('Run/Stop Loops Button')
