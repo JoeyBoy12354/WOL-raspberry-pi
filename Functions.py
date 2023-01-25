@@ -6,9 +6,13 @@ from wakeonlan import send_magic_packet
 import os
 import csv
 
+cfd = os.path.dirname(os.path.realpath(__file__)) #Current file path
+configPath = cfd+'/config.csv'
+devicesPath = cfd+'/devices.csv'
+
 
 def configWrite(pinA,pinB,loopTime,loop):
-    with open('config.csv', 'w') as configfile:
+    with open(configPath, 'w') as configfile:
         config = [pinA,pinB,loopTime,loop]
         configwriter = csv.writer(configfile)
         configwriter.writerow(config)
@@ -16,7 +20,7 @@ def configWrite(pinA,pinB,loopTime,loop):
 
 def configRead():
     config = [5,6,129,True]
-    with open('config.csv') as configfile:
+    with open(configPath) as configfile:
         configreader = csv.reader(configfile, delimiter=',')
         for row in configreader:
             if len(row)>3:
@@ -39,7 +43,7 @@ GPIO.setup(config[1], GPIO.IN, pull_up_down=GPIO.PUD_UP)
 def csvRead():
     data = []
     #/home/pi/Desktop/Johann_code/devices.csv
-    with open('devices.csv', newline='') as devicefile:
+    with open(devicesPath, newline='') as devicefile:
         devicereader = csv.reader(devicefile)
         mylist = list(devicereader)
         for i in range(0,len(mylist)):
@@ -48,7 +52,7 @@ def csvRead():
     return data
 
 def csvWrite(name,ip,mac):
-    with open('devices.csv', 'a', newline='') as devicefile:
+    with open(devicesPath, 'a', newline='') as devicefile:
         device = [name,ip,mac]
         devicewriter = csv.writer(devicefile)
         devicewriter.writerow('')
@@ -57,7 +61,7 @@ def csvWrite(name,ip,mac):
 
 def csvDelete(name):
     lines = list()
-    with open('devices.csv', 'r') as readFile:
+    with open(devicesPath, 'r') as readFile:
         reader = csv.reader(readFile)
         for row in reader:
             lines.append(row)
@@ -66,10 +70,10 @@ def csvDelete(name):
                     lines.remove(row)
 
         list2 = [x for x in lines if x != []]
-    if(os.path.exists('devices.csv') and os.path.isfile('devices.csv')):
-        os.remove('devices.csv')
+    if(os.path.exists(devicesPath) and os.path.isfile(devicesPath)):
+        os.remove(devicesPath)
 
-    with open('devices.csv', 'w') as writeFile:
+    with open(devicesPath, 'w') as writeFile:
         writer = csv.writer(writeFile)
         writer.writerows(list2)                   
 

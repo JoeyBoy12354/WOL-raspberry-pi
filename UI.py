@@ -144,12 +144,10 @@ while True:
             names.append(values["-NAME-"])
             data.append([values["-NAME-"],values["-IP-"],values["-MAC-"]])
             status.append('UNKNOWN')
-
             if(len(names)!=len(status)):
                 print("ERROR: amount of names and amount of device statuses do not agree")
                 print("this can lead to devices being incorrectly identified as up")
                 print("Possible debug: Delete all devices, restart program and then re-add")
-            
             print('newName = ',names)
             print('newData = ',data)
             window['-OUTPUT-'].update('SUCCESSFULLY ADDED NEW DEVICE')
