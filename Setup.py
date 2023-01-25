@@ -44,7 +44,7 @@ def setBootOnStart():
     
   
 if __name__ == '__main__': 
-    print("Setup is starting...")
+    print("Setup for WOL-Johann_Strydom is starting...")
     time.sleep(2)
 
     # Get the list of modules from the text file
@@ -55,6 +55,8 @@ if __name__ == '__main__':
     for i in range(len(modules)):
         modules[i] = modules[i].strip('\n')
 
+    print("Phase 0: Check for updates")
+    getUpdates()
     print("Phase 1: Installing Dependencies")
     getModules(modules) 
     print("Phase 2: Setting software to boot on start")
