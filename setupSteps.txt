@@ -1,0 +1,28 @@
+STEP 1: Operating System
+1.1) Download and install Raspberry Pi Imager (https://downloads.raspberrypi.org/imager/imager_latest.exe)
+1.2) Open raspberry pi imager
+1.3) Select Raspbian OS 64-bit and then select the SD card you want to use
+1.4) Select Write and wait for process to complete
+
+STEP 2: Setting up Raspberry Pi OS
+2.1) Plug in a power, screen, mouse and keyboard into pi
+2.2) Select South Africa and English
+2.3) Create user username:admin password:admin
+2.4) Select and connect to a Wi-Fi network
+2.5) Press next when prompted for Update Software then wait
+2.6) Raspberry Pi will restart
+
+STEP 3: Acquire WOL Software (this can be done on pi or on another device then do a USB stick transfer)
+3.1) Go to github.com
+3.2) Sign in to the dawie account
+3.3) Select WOL-raspberry-pi from the bar on the left in the home screen
+3.4) Press Code>Download ZIP
+*3.5) If this was done on a different device plug the USB stick into the pi and move the .zip to the downloads folder on the Raspberry pi
+
+STEP 4: Install WOL Software (Note: WOL zip must be in the Downloads folder on the pi)
+4.1) Right click on WOL zip file and select "Extract here"
+4.2) Enter WOL folder that has been created
+4.3) Click in the center of the window and press f4, the terminal should open in your directory
+4.4) Type: "sudo python Setup.py" and press enter
+4.5) During setup a file named /etc/xdg/lxsession/LXDE-pi/autostart will open when it does press "Ctrl+X"
+4.6) The pi will now reboot and the setup is complete

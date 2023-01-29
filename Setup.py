@@ -57,8 +57,10 @@ if __name__ == '__main__':
 
     print("Phase 0: Check for updates")
     getUpdates()
+    print("")
     print("Phase 1: Installing Dependencies")
     getModules(modules) 
+    print("")
     print("Phase 2: Setting software to boot on start")
     time.sleep(2)
     setBootOnStart()
